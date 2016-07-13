@@ -1,0 +1,36 @@
+# This template configures each role to use a separate NIC for
+# each isolated network.
+# This template assumes use of network-isolation.yaml.
+#
+# FIXME: if/when we add functionality to heatclient to include heat
+# environment files we should think about using it here to automatically
+# include network-isolation.yaml.
+resource_registry:
+  OS::TripleO::BlockStorage::Net::SoftwareConfig: ../network/config/multiple-nics/cinder-storage.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig: ../network/config/multiple-nics/compute.yaml
+  OS::TripleO::Controller::Net::SoftwareConfig: ../network/config/multiple-nics/controller.yaml
+  OS::TripleO::ObjectStorage::Net::SoftwareConfig: ../network/config/multiple-nics/swift-storage.yaml
+  OS::TripleO::CephStorage::Net::SoftwareConfig: ../network/config/multiple-nics/ceph-storage.yaml
+
+parameter_defaults:
+  ControlPlaneSubnetCidr: "27"
+  ControlPlaneDefaultRoute: 10.35.140.30
+  EC2MetadataIp: 10.35.140.1
+  DnsServers: ['10.35.28.28', '10.35.28.1', '8.8.8.8']
+  StorageNetCidr: '192.168.0.0/24'
+  StorageAllocationPools: [{'start':'192.168.0.2' , 'end':'192.168.0.250' }]
+  StorageNetworkVlanID: '10'
+  StorageMgmtNetCidr: '192.168.1.0/24'
+  StorageMgmtAllocationPools: [{'start': '192.168.1.2' , 'end': '192.168.1.250'}]
+  StorageMgmtNetworkVlanID: '20'
+  TenantNetCidr: '192.168.2.0/24'
+  TenantAllocationPools: [{'start': '192.168.2.2', 'end': '192.168.2.250'}]
+  TenantNetworkVlanID: '30'
+  InternalApiNetCidr:  '10.35.140.32/27'
+  InternalApiAllocationPools: [{'start': '10.35.140.34', 'end': '10.35.140.60'}]
+  InternalApiNetworkVlanID: '394'
+  ExternalNetCidr: '10.35.140.64/27'
+  ExternalAllocationPools: [{'start': '10.35.140.66', 'end': '10.35.140.93'}]
+  ExternalInterfaceDefaultRoute: 10.35.140.94
+  ExternalNetworkVlanID: '395'
+  NeutronExternalNetworkBridge: "''"
