@@ -29,7 +29,6 @@ parameter_defaults:
   InternalApiNetCidr:  '10.35.140.32/27'
   InternalApiAllocationPools: [{'start': '10.35.140.34', 'end': '10.35.140.60'}]
   InternalApiNetworkVlanID: '394'
-  InternalInterfaceDefaultRoute: 10.35.140.62
   ExternalNetCidr: '10.35.140.64/27'
   ExternalAllocationPools: [{'start': '10.35.140.66', 'end': '10.35.140.93'}]
   ExternalInterfaceDefaultRoute: 10.35.140.94
