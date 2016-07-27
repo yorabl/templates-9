@@ -1,0 +1,27 @@
+# A Heat environment file which can be used to enable the
+# use of an externally managed Ceph cluster.
+resource_registry:
+  OS::TripleO::CephClusterConfig::SoftwareConfig: ../puppet/extraconfig/ceph/ceph-external-config.yaml
+
+parameter_defaults:
+  # NOTE: These example parameters are required when using Ceph External
+  CephClusterFSID: '5a9cc23b-dec0-47cb-a9ae-0b654fb33d07'
+  CephClientKey: 'AQDu8mtXUtMdHRAAHwPiePhr769bm+B+dlV88Q=='
+  CephExternalMonHost: '10.35.140.90, 10.35.140.91, 10.35.140.92'
+
+  # the following parameters enable Ceph backends for Cinder, Glance, Gnocchi and Nova
+  NovaEnableRbdBackend: true
+  CinderEnableRbdBackend: true
+  GlanceBackend: rbd
+  GnocchiBackend: rbd
+  # If the Ceph pools which host VMs, Volumes and Images do not match these
+  # names OR the client keyring to use is not named 'openstack',  edit the
+  # following as needed.
+  NovaRbdPoolName: yrabl-vms
+  CinderRbdPoolName: yrabl-volumes
+  GlanceRbdPoolName: yrabl-images
+  GnocchiRbdPoolName: yrabl-metrics
+  CephClientUserName: yrabl
+
+  # finally we disable the Cinder LVM backend
+  CinderEnableIscsiBackend: false
