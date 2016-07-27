@@ -26,8 +26,8 @@ parameter_defaults:
   # Customize the IP ranges on each network to use for static IPs and VIPs
   InternalApiAllocationPools: [{'start': '10.35.140.2', 'end': '10.35.140.29'}]
   StorageAllocationPools: [{'start': '10.35.140.33', 'end': '10.35.140.61'}]
-  StorageMgmtAllocationPools: [{'start': '192.168.2.1', 'end': '192.168.2.200'}]
-  TenantAllocationPools: [{'start': '192.168.1.1', 'end': '192.168.1.200'}]
+  StorageMgmtAllocationPools: [{'start': '192.168.2.2', 'end': '192.168.2.200'}]
+  TenantAllocationPools: [{'start': '192.168.1.2', 'end': '192.168.1.200'}]
   # Leave room if the external network is also used for floating IPs
   ExternalAllocationPools: [{'start': '10.35.140.66', 'end': '10.35.140.89'}]
   # Gateway router for the external network
